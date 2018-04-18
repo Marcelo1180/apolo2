@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+
+<aiml version='1.0'>
+
+<!-- <category> -->
+<!--   <pattern> MI PERRO SE LLAMA *</pattern> -->
+<!--   <template> -->
+<!--      That is interesting that you have a dog named <set name='dog'><star/></set> -->
+<!--   </template> -->
+<!-- </category> -->
+<!-- <category> -->
+<!--   <pattern>CUAL ES EL NOMBRE DE MI PERRO</pattern> -->
+<!--   <template> -->
+<!--      Your dog's name is <get name='dog'/>. -->
+<!--   </template> -->
+<!-- </category> -->
+
+
+<!-- <category> -->
+<!--   <pattern> VIAJO DE * A *</pattern> -->
+<!--   <template> -->
+<!--      That is interesting that you have a dog named <set name='origen'><star/></set> destino <set name='destino'><star index='2'/></set> -->
+<!--   </template> -->
+<!-- </category> -->
+<!-- <category> -->
+<!--   <pattern> VIAJO *</pattern> -->
+<!--   <template> -->
+<!--      vaijo <set name='destino'><star/></set> -->
+<!--   </template> -->
+<!-- </category> -->
+
+<!-- referencia -->
+<!-- http://callmom.pandorabots.com/static/reference/#elements/-lt-condition-gt- -->
+<!-- buen tutorial -->
+<!-- https://www.devdungeon.com/content/ai-chat-bot-python-aiml -->
+<!-- flask -->
+<!-- http://suriyadeepan.github.io/2016-06-07-flask-intro/ -->
+<!-- aiml con tensor flow -->
+<!-- http://suriyadeepan.github.io/2016-06-28-easy-seq2seq/ -->
+<!-- textacy investigar -->
+<!-- https://textacy.readthedocs.io/en/stable/ -->
+<!-- la libreria -->
+<!-- https://github.com/creatorrr/pyAIML -->
+<!-- free aiml alice -->
+<!-- http://alicebot.wikidot.com/aiml:es-es:xgargoyle:sara:sara-aiml -->
+<!-- awesome ia -->
+<!-- https://github.com/iekumdario/naochat -->
+<!-- manejar mouse y tecleado python -->
+<!-- https://github.com/msanders/autopy/#readme -->
+
+
+<category>
+    <pattern>PROYECTO *</pattern>
+    <template>
+        <think><set name="proyecto"><star/></set></think>
+        <srai>PROYECTO</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>ABRE EL PROYECTO *</pattern>
+    <template>
+        <think><set name="proyecto"><star/></set></think>
+        <srai>PROYECTO</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>PROYECTO</pattern>
+    <template>
+        Cargando el proyecto <get name='proyecto'/>
+    </template>
+</category>
+
+<category>
+    <pattern> * TODOS LOS REPOSITORIOS *</pattern>
+    <template>
+        <think><set name="accion"><star/></set></think>
+        <think><set name="repositorio"><star index='2'/></set></think>
+        <srai>REPOSITORIO</srai>
+    </template>
+</category>
+
+<category>
+    <pattern> * TODOS LOS REPOSITORIOS DEL PROYECTO *</pattern>
+    <template>
+        <think><set name="accion"><star/></set></think>
+        <think><set name="proyecto"><star index='2'/></set></think>
+        <srai>REPOSITORIO</srai>
+    </template>
+</category>
+
+<category>
+    <pattern> * LOS REPOSITORIOS DEL PROYECTO *</pattern>
+    <template>
+        <think><set name="accion"><star/></set></think>
+        <think><set name="proyecto"><star index='2'/></set></think>
+        <srai>REPOSITORIO</srai>
+    </template>
+</category>
+
+<category>
+    <pattern>REPOSITORIO</pattern>
+    <template>
+        <condition name="accion">
+            <li value="actualiza">
+                <system> echo <get name='repositorio'/> </system>
+            </li>
+            <li value="lista">
+                <system> echo <get name='repositorio'/> </system>
+            </li>
+            <li>No tengo esta accion en el contexto repositorio</li>
+        </condition>
+    </template>
+</category>
+
+</aiml>
